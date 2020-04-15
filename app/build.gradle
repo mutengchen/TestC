@@ -9,6 +9,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -16,11 +17,17 @@ android {
             }
         }
     }
+    packagingOptions{
+        exclude 'lib/armeabi-v7a/libnative-lib.so'
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets.main {
+        jniLibs.srcDir 'libs'
     }
     externalNativeBuild {
         cmake {
