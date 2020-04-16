@@ -8,7 +8,7 @@ package com.example.testc;
  */
 public class JNIUtils {
     static {
-        System.loadLibrary("native-lib");
+        System.loadLibrary("cmt");
     }
-    public native String stringFromJNI();
+    public native String sayHello();
 }

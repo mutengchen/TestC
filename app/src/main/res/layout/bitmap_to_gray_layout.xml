@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="灰度处理"
+                android:id="@+id/pic2gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Button>
+
+            <Button
+                android:text="灰度转换成原图"
+                android:id="@+id/gray2pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Button>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/macu">
+
+        </ImageView>
+    </LinearLayout>
+</layout>

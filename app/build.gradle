@@ -14,11 +14,15 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags ""
+                arguments "-DANDROID_STL=c++_shared"
+            }
+            ndk{
+                abiFilters "armeabi-v7a"
             }
         }
     }
-    packagingOptions{
-        exclude 'lib/armeabi-v7a/libnative-lib.so'
+    dataBinding{
+        enabled true
     }
     buildTypes {
         release {
@@ -26,8 +30,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets.main {
-        jniLibs.srcDir 'libs'
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
     }
     externalNativeBuild {
         cmake {

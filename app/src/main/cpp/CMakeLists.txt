@@ -9,15 +9,21 @@ cmake_minimum_required(VERSION 3.4.1)
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
+#设置include文件夹的地址
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
+#设置opencv的动态库
+add_library(libopencv_java3 SHARED IMPORTED)
+set_target_properties(libopencv_java3 PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libopencv_java3.so)
 add_library( # Sets the name of the library.
-        native-lib
+        cmt
 
         # Sets the library as a shared library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        native-lib.cpp)
+        cmt.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -27,7 +33,6 @@ add_library( # Sets the name of the library.
 
 find_library( # Sets the name of the path variable.
         log-lib
-
         # Specifies the name of the NDK library that
         # you want CMake to locate.
         log)
@@ -37,8 +42,8 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-        native-lib
-
+        cmt
+        libopencv_java3
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})
