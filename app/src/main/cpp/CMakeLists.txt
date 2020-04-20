@@ -16,6 +16,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 add_library(libopencv_java3 SHARED IMPORTED)
 set_target_properties(libopencv_java3 PROPERTIES IMPORTED_LOCATION
         ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libopencv_java3.so)
+#设置人脸库对应的cpp
+#add_library(DetectionBasedTracker_jni SHARED DetectionBasedTracker_jni.cpp)
+
 add_library( # Sets the name of the library.
         cmt
 
@@ -24,6 +27,7 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         cmt.cpp)
+#add_library(detection_based_tracker SHARED DetectionBasedTracker_jni.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -43,6 +47,7 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
         cmt
+#        detection_based_tracker
         libopencv_java3
         # Links the target library to the log library
         # included in the NDK.

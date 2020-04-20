@@ -1,5 +1,7 @@
 package com.example.testc;
 
+import android.graphics.Bitmap;
+
 /**
  * Date: 2020/4/16
  * Time: 16:26
@@ -7,5 +9,9 @@ package com.example.testc;
  * desc:
  */
 public class OpenCvUtil {
-    public static native int[] bitmap2Mat(int[] piexels,int w,int h);
+    static{
+        System.loadLibrary("cmt");
+    }
+    public static native int[] bitmap2Mat(int[] pixels,int w,int h);
+    public static native String sayHello();
 }

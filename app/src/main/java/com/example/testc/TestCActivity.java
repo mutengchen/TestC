@@ -3,6 +3,7 @@ package com.example.testc;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.testc.databinding.BitmapToGrayLayoutBinding;
+import com.example.testc.service.MyJobSchService;
 
 /**
  * Date: 2020/4/15
@@ -21,6 +23,7 @@ import com.example.testc.databinding.BitmapToGrayLayoutBinding;
 public class TestCActivity extends Activity implements View.OnClickListener {
     BitmapToGrayLayoutBinding binding;
     private Bitmap bitmap;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,9 @@ public class TestCActivity extends Activity implements View.OnClickListener {
         showImg();
         binding.pic2gray.setOnClickListener(this);
         binding.gray2pic.setOnClickListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            MyJobSchService.startJob(this);
+        }
     }
     private void showImg(){
         bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.macu);
@@ -44,6 +50,13 @@ public class TestCActivity extends Activity implements View.OnClickListener {
         resultImage.setPixels(resultData,0,w,0,0,w,h);
         binding.pic.setImageBitmap(resultImage);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -51,7 +64,7 @@ public class TestCActivity extends Activity implements View.OnClickListener {
                 gray();
                 break;
             case R.id.gray2pic:
-                showImg();
+                Toast.makeText(this,OpenCvUtil.sayHello(),Toast.LENGTH_LONG).show();
                 break;
         }
     }

@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.testc">
+    <application>
+<!--        需要将支付接口暴露出去，其他app才能调用-->
+        <service
+            android:enabled="true"
+            android:exported="true"
+            android:name="com.example.aidlservicedemo.IPayService"
+            >
+            <intent-filter>
+                <action android:name="com.example.aidlservicedemo.IPayService"></action>
+            </intent-filter>
+        </service>
+        <activity android:name="com.example.aidlservicedemo.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
